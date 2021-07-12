@@ -1,0 +1,369 @@
+:root {
+    /*list item 的背景顏色，要與打勾預設顏色一樣*/
+    --list-item-background-color: rgb(248, 248, 248);
+    /*border radius*/
+    --box-corner: 8px;
+    /*tag 的 border radius*/
+    --tag-corner: 50px;
+    /*add task button、tag list、list 的寬度*/
+    --container-width: min(100%, 350px);
+    /*list item 裡內容上方邊界要等距*/
+    --list-item-margin-top: 15px;
+    /*字體*/
+    --font: 'Ubuntu', sans-serif;
+    /*button 預設顏色*/
+    --btn-default-color: #696f79;
+
+}
+
+body {
+    font-family: var(--font);
+}
+
+h1 {
+    /*文字置中*/
+    text-align: center;
+    margin: 50px auto 30px auto;
+    font-size: 60px;
+    /*與 body 字體不同*/
+    font-family: 'Parisienne', cursive;
+
+}
+
+article {
+    /*article 最大寬度可到 850px，使 to do list 和 done list 可並排*/
+    width: min(100%, 850px);
+    /*置中*/
+    margin: 0 auto;
+}
+
+ul {
+    /*去除所有 list 前面預設的 indent*/
+    padding-left: 0;
+}
+
+li {
+    /*去除所有 li 的標示*/
+    list-style-type: none;
+}
+
+#tag-list {
+    width: var(--container-width);
+    /*置中*/
+    margin: 30px auto 0 auto;
+    padding: 10px 0;
+    /*flexbox (container)*/
+    display: flex;
+    justify-content: space-between;
+    /*當 x 方向超過時自動產生 scroll*/
+    overflow-x: auto;
+}
+
+#tag-list li {
+    padding: 5px 15px;
+    margin-left: 2%;
+    border: solid 1px #afafaf;
+    border-radius: var(--tag-corner);
+}
+
+#tag-list li:first-child {
+    /*只要 li 中間有 margin*/
+    margin-left: 0;
+}
+
+#tag-list li:hover,
+.tag-selected {
+    /*選擇 tag 時改變顏色和鼠標*/
+    background-color: #afafaf;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+
+button,
+input,
+select,
+textarea {
+    /*改變預設*/
+    font-family: var(--font);
+    font-size: 1em;
+}
+
+#add-new-task-btn {
+    width: var(--container-width);
+    height: 50px;
+    /*置中*/
+    margin: 0 auto;
+    /*去除 button 預設邊框*/
+    border: 0px;
+    /*鼠標變成 pointer*/
+    cursor: pointer;
+    border-radius: var(--box-corner);
+    /*flexbox (container)*/
+    display: flex;
+    /*垂直方向在中間 (flexbox)*/
+    align-items: center;
+    background-color: var(--btn-default-color);
+    /*文字顏色*/
+    color: white;
+}
+
+#plus-container {
+    /*調整對齊 to do list 中 checkbox 和內容的距離*/
+    margin: 11px;
+}
+
+#plus-path {
+    stroke: white;
+    stroke-width: 2;
+    /*線的收尾為圓角*/
+    stroke-linecap: round;
+}
+
+#add-new-task-btn:hover {
+    background-color: #d1d1d1;
+    color: black;
+}
+
+#add-new-task-btn:hover #plus-path {
+    /*change child's style while hovering on parent 的語法*/
+    stroke: black;
+}
+
+h2 {
+    /*與底線距離拉近*/
+    margin-bottom: 1px;
+}
+
+#lists-container {
+    /*flexbox (container)*/
+    display: flex;
+    /*當內容超過螢幕時自動換行 (flexbox)*/
+    flex-wrap: wrap;
+    /*在 main axis 上置中 (flexbox)*/
+    justify-content: center;
+}
+
+.list {
+    width: var(--container-width);
+    margin: 0 2%;
+}
+
+#to-do-list li,
+#done-list li {
+    border-radius: var(--box-corner);
+    background-color: var(--list-item-background-color);
+    /*list item 之間的距離*/
+    margin: 0.5rem 0;
+    padding: 0.25rem 1rem;
+    /*grid (container)*/
+    display: grid;
+    /*定義 gird 名稱與大小，利用 minmax 限制範圍 (grid)*/
+    grid-template: "checkbox content options"100% / 20px minmax(0, 1fr) 50px;
+    /*每個 column 置左 (grid)*/
+    align-items: start;
+    /*column 的間距 (grid)*/
+    column-gap: 10px;
+}
+
+.checkbox-btn {
+    /*背景設為透明*/
+    background-color: transparent;
+    border: 1px solid grey;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: var(--list-item-margin-top);
+    /*讓打勾在圓框中*/
+    padding: 0;
+    cursor: pointer;
+    /*grid (children)*/
+    grid-area: checkbox;
+}
+
+.svg-container {
+    /*svg 的長與寬*/
+    width: 18px;
+    height: 18px;
+}
+
+.check {
+    /*預設顏色與 list item 相同*/
+    stroke: var(--list-item-background-color);
+    stroke-linecap: round;
+}
+
+.checked {
+    /*.checkbox-btn*/
+    background-color: #e0e0e0;
+    /*.check*/
+    stroke: black;
+}
+
+.checkbox-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.checkbox-btn:hover .check {
+    stroke: black;
+}
+
+.taskcontent-container {
+    /*grid (children)*/
+    grid-area: content;
+}
+
+.task-content {
+    margin: 14px auto 10px 0;
+    /*overflow to next line*/
+    word-wrap: break-word;
+    line-height: 1.4em;
+}
+
+.task-content-checked {
+    /*當 task 完成，文字劃掉*/
+    text-decoration: line-through;
+    color: grey;
+}
+
+.tag {
+    margin: 0 auto 10px 0;
+    padding: 2px 10px;
+    font-size: 0.8em;
+    border: solid 1px grey;
+    width: fit-content;
+    border-radius: var(--tag-corner);
+}
+
+.options-container {
+    /*grid (children)*/
+    grid-area: options;
+    /*flexbox (container)*/
+    display: flex;
+    /*在 main axis 上置右 (flexbox)*/
+    justify-content: flex-end;
+}
+
+.options-btn-path {
+    /*在 list item 中的 svg 圖案 path 設定*/
+    fill: transparent;
+    stroke: grey;
+}
+
+.delete-btn,
+.edit-btn,
+.modal-close-btn {
+    /*button 的統一格式*/
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    border: 0px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.delete-btn,
+.edit-btn {
+    margin-top: var(--list-item-margin-top);
+    margin-left: 5px;
+}
+
+.modal-container {
+    /*stay in place*/
+    position: fixed;
+    /*sit on top*/
+    z-index: 1000;
+    /*full screen*/
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /*enable scroll if needed*/
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalbox {
+    box-shadow: 0px 0px 8px 1px rgba(89, 89, 89, 0.75);
+    -webkit-box-shadow: 0px 0px 8px 1px rgba(89, 89, 89, 0.75);
+    -moz-box-shadow: 0px 0px 8px 1px rgba(89, 89, 89, 0.75);
+    border-radius: var(--box-corner);
+    padding: 15px;
+    width: min(350px, 80%);
+    background-color: white;
+    /*調上方邊界距離，置中*/
+    margin: 110px auto;
+    /*flexbox (container)*/
+    display: flex;
+    /*flexbox 方向為 column*/
+    flex-direction: column;
+}
+
+.modal-close-btn {
+    /*flexbox 中個別元素在 cross axis 置底*/
+    align-self: flex-end;
+}
+
+.modal-close-btn-path {
+    stroke: black;
+    stroke-width: 1;
+    stroke-linecap: round;
+}
+
+.modal-content-container {
+    border: solid 1px grey;
+    border-radius: var(--box-corner);
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    /*移除預設*/
+    resize: vertical;
+}
+
+textarea:focus {
+    /*移除預設*/
+    outline: none;
+}
+
+.modal-tag {
+    margin-top: 10px;
+    padding: 2px;
+    border-radius: var(--tag-corner);
+    width: fit-content;
+    font-size: 0.9em;
+}
+
+.modal-text {
+    border: none;
+    background-color: var(--list-item-background-color);
+    border-radius: var(--box-corner);
+    /*輸入文字與邊框距離*/
+    padding: 8px;
+}
+
+.modal-save-btn {
+    /*移除 button 預設邊框*/
+    border: 0px;
+    width: 50px;
+    margin: 10px auto auto 0;
+    border-radius: var(--box-corner);
+    padding: 5px;
+    background-color: var(--btn-default-color);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.modal-save-btn:hover {
+    background-color: #d1d1d1;
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
