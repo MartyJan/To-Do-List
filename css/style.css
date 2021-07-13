@@ -71,14 +71,12 @@ li {
     margin-left: 0;
 }
 
-#tag-list li:hover,
 .tag-selected {
     /*選擇 tag 時改變顏色和鼠標*/
     background-color: #afafaf;
     color: white;
     font-weight: 500;
     cursor: pointer;
-
 }
 
 button,
@@ -119,16 +117,6 @@ textarea {
     stroke-width: 2;
     /*線的收尾為圓角*/
     stroke-linecap: round;
-}
-
-#add-new-task-btn:hover {
-    background-color: #d1d1d1;
-    color: black;
-}
-
-#add-new-task-btn:hover #plus-path {
-    /*change child's style while hovering on parent 的語法*/
-    stroke: black;
 }
 
 h2 {
@@ -198,14 +186,6 @@ h2 {
     /*.checkbox-btn*/
     background-color: #e0e0e0;
     /*.check*/
-    stroke: black;
-}
-
-.checkbox-btn:hover {
-    background-color: #e0e0e0;
-}
-
-.checkbox-btn:hover .check {
     stroke: black;
 }
 
@@ -359,11 +339,41 @@ textarea:focus {
     cursor: pointer;
 }
 
-.modal-save-btn:hover {
-    background-color: #d1d1d1;
-    color: black;
-}
-
 .hidden {
     display: none;
+}
+
+@media(hover: hover) and (pointer: fine) {
+
+    /*在 touch screen 上 hover 不能作用*/
+    #tag-list li:hover {
+        /*選擇 tag 時改變顏色和鼠標*/
+        background-color: #afafaf;
+        color: white;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    #add-new-task-btn:hover {
+        background-color: #d1d1d1;
+        color: black;
+    }
+
+    #add-new-task-btn:hover #plus-path {
+        /*change child's style while hovering on parent 的語法*/
+        stroke: black;
+    }
+
+    .checkbox-btn:hover {
+        background-color: #e0e0e0;
+    }
+
+    .checkbox-btn:hover .check {
+        stroke: black;
+    }
+
+    .modal-save-btn:hover {
+        background-color: #d1d1d1;
+        color: black;
+    }
 }
