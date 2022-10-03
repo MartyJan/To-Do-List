@@ -6,6 +6,6 @@ This is a simple to do list developed in Vanilla JavaScript. It has the followin
 - Delete and edit created tasks 
 - LocalStorage to store data in the browser
 
-Demo: [https://martyjan.github.io/toDoList/](https://martyjan.github.io/To-Do-List/)
+Demo: [https://martyjan.github.io/To-Do-List/](https://martyjan.github.io/To-Do-List/)
 
 ![Demo picture](img/demo.png)
